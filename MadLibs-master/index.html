@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" ng-app="madLibs">
+<head>
+	<meta charset="UTF-8">
+	<title>MadLibs Game</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<section class="body" ng-controller="FormCrtl">
+		<div class="header">
+			<h1>Automate This!</h1>
+		</div>
+		<div class="animation-container">
+		<div class="input-area" ng-hide="isFormHide && madLibsForm.$valid">
+			<h2>Provide the following words:</h2>
+			<form name="madLibsForm"  ng-submit="submitted=true;submit()" novalidate>
+				<p>I am 
+					<input type="radio" ng-checked="{{gender.pronoun == 'he'}}" ng-click="gender.pronoun='he';gender.poss='his'" id="male" name="gender" value="male" placeholder=""><label for="gender">Male</label>
+					<input type="radio" ng-checked="{{gender.pronoun == 'she'}}" ng-click="gender.pronoun='she';gender.possessive='her'" id="female" name="gender" value="female" placeholder=""><label for="gender">Female</label>
+				</p>
+				<div class="left">
+					<input type="text" name="my_name" value="" placeholder="my name" ng-model="data.my_name" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.my_name.$error.required">Please enter a name</p>
+					<input type="text" name="job_title" value="" placeholder="job title" ng-model="data.job_title" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.job_title.$error.required">Please enter a job title</p>
+					<input type="text" name="tedious_task" value="" placeholder="tedious task" ng-model="data.tedious_task" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.tedious_task.$error.required">Please enter a task</p>
+				</div>
+				<div class="middle">
+					<input type="text" name="dirty_task" value="" placeholder="dirty task" ng-model="data.dirty_task" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.dirty_task.$error.required">Please enter a task</p>
+					<input type="text" name="celebrity" value="" placeholder="celebrity" ng-model="data.celebrity" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.celebrity.$error.required">Please enter a name</p>
+					<input type="text" name="useless_skill" value="" placeholder="useless skill" ng-model="data.useless_skill" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.useless_skill.$error.required">Please enter a skill</p>
+				</div>
+				<div class="right">
+					<input type="text" name="obnoxiuous_celbertity" value="" placeholder="obnoxiuous celbertity" ng-model="data.obnoxiuous_celbertity" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.obnoxiuous_celbertity.$error.required">Please enter a name</p>
+					<input type="number" name="huge_number" value="" placeholder="huge number" ng-model="data.huge_number" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.huge_number.$error.number">Are you sure that this is a number?</p>
+					<p class="warning" ng-if="submitted && madLibsForm.huge_number.$error.required">Please enter a number</p>
+					
+					<input type="text" name="adjective" value="" placeholder="adjective" ng-model="data.adjective" required ng-focus="setForHide()">
+					<p class="warning" ng-if="submitted && madLibsForm.adjective.$error.required">Please enter a adjective</p>
+				</div>
+				<input class="button large blue" ng-click="clickSubmit()" type="submit" name="submit" value="Generate My MadLib">
+			</form>
+		</div>
+		<div class="content"  ng-show="isFormHide && madLibsForm.$valid" >
+			<p>
+				<span class="blank">{{data.my_name}}</span> was a <span class="blank">{{data.job_title}}</span> who loved technology. Although {{gender.pronoun}} loved parts of {{poss}} job, {{gender.pronoun}} absolutely hated  <span class="blank">{{data.tedious_task}}</span> and <span class="blank">{{data.dirty_task}}</span>. So, <span class="blank">{{data.my_name}}</span> met with {{poss}} life mentor <span class="blank">{{data.celebrity}}</span> who told {{poss}} to learn how to <span class="blank">{{data.useless_skill}}</span> with Thinkful. Thinkful didn't offer a course on <span class="blank">{{data.useless_skill}}</span> so {{gender.pronoun}} studied programming instead. 
+			</p>
+			<p>
+				What a great decision! With {{poss}} new skills, <span class="blank">{{data.my_name}}</span> built a(n) <span class="blank">{{data.adjective}}</span> robot named <span class="blank">{{data.obnoxiuous_celbertity}}</span> that not only loved <span class="blank">{{data.dirty_task}}</span> but did it <span class="blank">{{data.huge_number}}</span> faster. 
+			</p>
+			<a href="#" class="button large" ng-click="reset()">Reset</a>
+		</div>
+		</div>
+	</section>
+<script type="text/javascript" src="libs/angular.js"></script>
+<script type="text/javascript" src="libs/angular-animate.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

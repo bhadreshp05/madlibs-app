@@ -1,0 +1,191 @@
+@import "./_normalize.scss";
+@import "./_mixins.scss";
+@import "./_var.scss";
+@import "./_button.scss";
+
+html,body{
+  background-color:$dark_gray;
+}
+
+$border: 1px solid #CCC;
+div{
+    border:$border;
+    @include box-sizing(border-box);
+  }
+.body{
+  width:800px;
+  margin:20px auto;
+  background-color:#FFF;
+  padding:30px;
+
+}
+.header{
+  padding-left:220px;
+  position:relative;
+  border-width:3px;
+  border-bottom:none;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+  &:before{
+    content:"";
+    background:url(../images/mad-lib-happy-face.png) center center no-repeat;
+    background-size: 120px 120px;
+    width:140px;
+    height:140px;
+    position:absolute;
+    top:0;
+    left:0;
+     border-right:$border;
+  }
+  h1{
+    @include box-sizing(border-box);
+    position:relative;
+    line-height: 60px;
+    font-size:60px;
+    padding-top:80px;
+    margin:0;
+  &:before{
+    content:"";
+    background:url(../images/ng-mad-libs-logo.png) no-repeat;
+    background-size: contain;
+    width:460px;
+    height:80px;
+    position:absolute;
+    top:0;
+    left:40px;
+  }
+  }
+}
+.input-area{
+  @include clearfix;
+  padding:20px;
+  background-color: $light_pale_blue;
+  z-index:3;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+     height:400px;
+  h2{
+    margin:20px 0 15px;
+  }
+  .left,.middle,.right{
+    float:left;
+    width:33.33333%;
+    text-align:center;
+    border:none;
+  }
+  input[type=radio]{
+    vertical-align: text-bottom;
+    margin:2px 3px;
+  }
+  label{
+    margin-right: 3px;
+  }
+  input[type=text],input[type=number]{
+    width:200px;
+    margin:10px 0 0;
+    padding:5px;
+    line-height:15px;
+    border:1px solid #000;
+  }
+  .button{
+    float:right;
+    margin-top:10px;
+  }
+  .warning{
+    margin:0;
+    color:$red;
+    line-height: 1.3em;
+    &.ng-enter,&.ng-leave{
+      @include transition(all .5s);
+    }
+    &.ng-enter{
+      opacity:0;
+    }
+    &.ng-enter-active{
+      opacity:1;
+    }
+    &.ng-leave{
+      opacity: 1;
+    }
+    &.ng-leave-active{
+      opacity: 0;
+    }
+  }
+ 
+  &.ng-hide-add,&.ng-hide.ng-hide-remove{
+    // left:0;
+    // @include transition(all 2s);
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: easeout;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    animation-timing-function: easeout;
+    animation-name: slide;
+     
+  }
+  //  &.ng-hide{
+  //   left:-1000px;
+  
+}
+// }
+@include keyframes(slide) {
+  0% {
+    left: 0px;
+  }
+  30% {
+    left: -500px;
+  }
+  70% {
+    left: -300px;
+  } 
+  100%{
+    left:-1000px;
+  }
+}
+.content{
+  @include clearfix;
+  background-color:$light_pale_green;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:400px;
+  z-index:2;
+  a{
+    float:right;
+    margin:0 10px 10px 0;
+  }
+  &.ng-hide-add,&.ng-hide.ng-hide-remove{
+    left:0;
+    @include transition(all 2s);
+    
+  }
+   &.ng-hide{
+    left:1000px;
+  }
+}
+.animation-container{
+  position:relative;
+  height:400px;
+  border-width:3px;
+ border-top-width:1px;
+ border-bottom-left-radius:15px;
+  border-bottom-right-radius:15px;
+  overflow: hidden;
+}
+
+p{
+  line-height: 2em;
+  margin:20px;
+}
+.blank{
+  @include box-sizing(border-box);
+  display: inline-block;
+  color:$blue;
+  border-bottom:1px solid $gray;
+  width:150px;
+  text-align:center;
+  line-height: 20px;
+}

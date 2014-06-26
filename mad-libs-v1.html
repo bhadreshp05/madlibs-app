@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngMadLibsApp">
+<head>
+	<meta charset="utf-8">
+	<title>MadLibs App v1</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arvo:400,700">
+	<link rel="stylesheet" href="css/mad-libs1.css">
+</head>
+
+<body ng-controller="ngMadLibs">
+<br>
+
+	<header class="container">
+		<div class="row">
+			<div class="col-xs-4 col-sm-2 col-sm-offset-2">
+				<img ng-if="madlib.on" src="images/smiley.png" class="smiley">
+			</div>
+			<div class="col-xs-8 col-sm-6">
+				<img ng-if="madlib.on" src="images/logo.png" alt="ngMadLibs Logo" class="logo">
+			</div>
+		</div>
+	</header>
+
+	<section class="container">
+		<!-- User Input Controls -->
+		<div ng-hide="madlib.renderMadLib" class="page">
+			<form ng-submit="submit()" name="ngMadLibsForm" novalidate>
+				<div class="row spaced">
+					<div class="col-sm-12">
+					Select a gender:
+					<input type="radio" name="gender" id="male" ng-model="madlib.gender" value="male"> <label for="male">male</label>
+					<input type="radio" name="gender" id="female" ng-model="madlib.gender" value="female"> <label for="female">female</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="name" ng-model="madlib.name" placeholder="name" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.name.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.name.$error.required" title="required"></span>
+					</div>
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="dirtyTask" ng-model="madlib.dirtyTask" placeholder="dirty task" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.dirtyTask.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.dirtyTask.$error.required" title="required"></span>
+					</div>
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="celebrity" ng-model="madlib.celebrity" placeholder="celebrity" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.celebrity.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.celebrity.$error.required" title="required"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="job" ng-model="madlib.job" placeholder="job title" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.job.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.job.$error.required" title="required"></span>
+					</div>
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="obnoxiousCelebrity" ng-model="madlib.obnoxiousCelebrity" placeholder="obnoxious celebrity" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.obnoxiousCelebrity.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.obnoxiousCelebrity.$error.required" title="required"></span>
+					</div>
+					<div class="col-sm-4 input-wrapper">
+						<input type="number" name="num" ng-model="madlib.num" placeholder="huge number" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.num.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.num.$error.required" title="required"></span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="tediousTask" ng-model="madlib.tediousTask" placeholder="tedious task" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.tediousTask.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.tediousTask.$error.required" title="required"></span>
+					</div>
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="uselessSkill" ng-model="madlib.uselessSkill" placeholder="useless skill" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.uselessSkill.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.uselessSkill.$error.required" title="required"></span>
+					</div>
+					<div class="col-sm-4 input-wrapper">
+						<input type="text" name="adjective" ng-model="madlib.adjective" placeholder="adjective" required>
+						<span class="validation-feedback glyphicon glyphicon-ok valid" ng-show="ngMadLibsForm.adjective.$valid"></span>
+						<span class="validation-feedback glyphicon glyphicon-asterisk" ng-show="ngMadLibsForm.adjective.$error.required" title="required"></span>
+					</div>
+				</div>
+
+				<div class="row spaced">
+					<div class="col-sm-12">
+						<button class="btn btn-lg pull-right" ng-disabled="ngMadLibsForm.$invalid" ng-class="{'btn-success':ngMadLibsForm.$valid}">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<!-- Generated Output Text -->
+		<div ng-show="madlib.renderMadLib" id="output" class="spaced page">
+			<p><span class="label">{{madlib.name}}</span> was a <span class="label">{{madlib.job}}</span> who loved technology. Although {{madlib.gender == 'female' ? 'she' : 'he'}} loved parts of {{madlib.gender == 'female' ? 'her' : 'his'}} job, {{madlib.gender == 'female' ? 'she' : 'he'}} absolutely hated <span class="label">{{madlib.dirtyTask}}</span> and <span class="label">{{madlib.tediousTask}}</span>. So, <span class="label">{{madlib.name}}</span> met with {{madlib.gender == 'female' ? 'her' : 'his'}} life mentor <span class="label">{{madlib.celebrity}}</span> who told {{madlib.gender == 'female' ? 'her' : 'him'}} to learn how to <span class="label">{{madlib.uselessSkill}}</span> with Thinkful. Thinkful didn't offer a course on <span class="label">{{madlib.uselessSkill}}</span> so {{madlib.gender == 'female' ? 'she' : 'he'}} studied programming instead.</p>
+
+			<p>What a great decision! With {{madlib.gender == 'female' ? 'her' : 'his'}} new uselessSkills, <span class="label">{{madlib.name}}</span> built a(n) <span class="label">{{madlib.adjective}}</span> robot named <span class="label">{{madlib.obnoxiousCelebrity}}</span> that not only loved <span class="label">{{madlib.dirtyTask}}</span> but did it <span class="label">{{madlib.num}}</span> times faster.</p>
+			<div class="row spaced">
+				<div class="col-sm-12">
+					<button class="btn btn-primary btn-lg pull-right" ng-click="reset()">Start Over</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-animate.min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
+

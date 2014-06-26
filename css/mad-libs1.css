@@ -1,0 +1,108 @@
+/* BASE RULES */
+body {
+	font-family: 'Arvo', serif;
+	font-size: 1.8rem;
+	padding: 2.5rem 1rem;
+}
+img {
+	max-width: 100%;
+}
+.container {
+	max-width: 768px;
+}
+
+/* HEADING */
+header {
+	height: 15rem;
+	line-height:15rem;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* CONTENT */
+section {
+	position: relative;
+	border: 1px solid #000;
+}
+.spaced {
+	margin: 2.5rem -1.5rem;
+}
+
+/* INPUT FORM */
+input[type="text"], input[type="number"] {
+	border: 0.3rem solid #D2D8DA;
+	box-sizing:border-box;
+	font-size: 1.75rem;
+	margin-bottom: 1rem;
+	outline: none;
+	padding: 0.75rem 3.5rem 0.75rem 1rem;
+	width: 100%;
+	-webkit-border-radius: 0.75rem;
+		 -moz-border-radius: 0.75rem;
+					border-radius: 0.75rem;
+	-webkit-transition: all 0.25s linear;
+	   -moz-transition: all 0.25s linear;
+	     -o-transition: all 0.25s linear;
+	   			transition: all 0.25s linear;
+}
+input[type="radio"] {
+	margin-left: 0.75rem;
+}
+.input-wrapper {
+	position: relative;
+}
+.validation-feedback {
+	color: #D2D8DA;
+	font-size: 1.5rem;
+	right: 3rem;
+	position: absolute;
+	top: 1.5rem;
+}
+.valid {
+	color: #5CB85C;
+}
+
+/* OUTPUT */
+#output {
+	color: #696C6D;
+	text-align: justify;
+}
+.label {
+	background: #757575;
+	color: #FFF;
+	display: inline-block;
+	padding: 0 0.5rem;
+	-webkit-border-radius: 0.25rem;
+		 -moz-border-radius: 0.25rem;
+					border-radius: 0.25rem;
+}
+
+/* ANIMATIONS */
+.page {
+	position: absolute;
+	top: 0;
+	-webkit-transition: all 1s cubic-bezier(1,.08,1,.09);
+				  transition: all 1s cubic-bezier(1,.08,1,.09);
+}
+.page.ng-hide.ng-hide-remove {
+		opacity: 0;
+		-webkit-transform: scale(2.25) translateY(-1.5rem);
+		 				transform: scale(2.25) translateY(-1.5rem);
+						display:block!important;
+}
+.page.ng-hide.ng-hide-remove-active {
+		opacity: 1;
+		-webkit-transform: scale(1) translateY(0);
+						transform: scale(1) translateY(0);
+}
+.page.ng-hide.ng-hide-add {
+		opacity: 1;
+		-webkit-transform: scale(1);
+						transform: scale(1);
+						display:block!important;
+}
+.page.ng-hide.ng-hide-add-active {
+		opacity: 0;
+		-webkit-transform: scale(0.25);
+		 				transform: scale(0.25);
+}
